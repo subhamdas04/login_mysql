@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <title>Login Panel</title>
+    <style type="text/css">
+        .main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 400px;
+            height: auto;
+            border: 1px solid red;
+            border-radius: 10px;
+        }
+        .textbox{
+            width: 90%;
+            height: 30px;
+            font-size: 18px;
+            border: 1px solid black;
+            outline: none;
+            border-radius: 10px;
+            padding-left: 5px;
+            margin-bottom: 20px;
+        }
+        .btn{
+            width: 70%;
+            height: 35px;
+            border-radius: 10px;
+            color: black;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: pink;
+            font-size: 18px;
+        }
+        .btn:active{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="main">
+            <h2>Login Panel</h2>
+            <input type="text" name="username" placeholder="Enter Username" class="textbox">
+            <input type="password" name="password" placeholder="Enter Password" class="textbox">
+            <button class="btn">Login</button>
+        </div>
+    </center> 
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#login').click(function(){
+                var a = document.getElementsByName("username")[0].value;
+                var b = document.getElementsByName("password")[0].value;
+                $.ajax({
+                    type: "GET",
+                    url: "login.php",
+                    data: {
+                        u:a,
+                        p:b
+                    },
+                    success: function(data){
+                        if(data == "Success"){
+                            location.href = "http://localhost/login_mysql/dashboard/";
+                        }else{
+                            alert(data);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+</body>
+</html>
